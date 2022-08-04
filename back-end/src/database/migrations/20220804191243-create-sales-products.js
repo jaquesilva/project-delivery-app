@@ -9,7 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       sale_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       product_id: {
         type: Sequelize.INTEGER
