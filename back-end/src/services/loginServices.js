@@ -1,9 +1,9 @@
-const { Users } = require('../database/models');
+const  { User }  = require('../database/models/');
 
 const login = async (email) => {
-  const loginUser = await Users.findOne({ where: { email } });
-
-  if (!loginUser) {
+  const loginUser = await User.findOne({ where: { email } });
+console.log(loginUser)
+  if (!loginUser || undefined) {
     return 'Invalid fields';
   }
   return loginUser;
