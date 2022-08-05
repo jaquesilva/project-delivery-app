@@ -1,8 +1,8 @@
 'use strict';
-
+// mudei o de Users para Users para passar no test.
 module.exports = {
   async up (queryInterface, Sequelize) {
-      await queryInterface.bulkInsert('Users', [{
+      await queryInterface.bulkInsert('users', [{
         id: 1,
         name: 'Delivery App Admin',
         email: 'adm@deliveryapp.com',
@@ -25,6 +25,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Users', null, {});
+    await queryInterface.bulkDelete('users', null, {});
   }
 };
