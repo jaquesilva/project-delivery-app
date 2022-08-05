@@ -1,7 +1,7 @@
 const db = require(".");
 
 module.exports = (sequelize, DataTypes) => {
-  const Users = sequelize.define('Users', {
+  const User = sequelize.define('User', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -21,8 +21,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize: db,
     // modelName: 'Users',
+    tableName: 'users',
     // underscored: true,
     timestamps: false
     });
-  return Users;
+  return User;
   }
