@@ -1,4 +1,5 @@
-const { User } = require('../database/models/');
+const { User } = require('../database/models');
+
 const login = async (email) => {
   const loginUser = await User.findOne({ where: { email } });
 console.log(loginUser);
