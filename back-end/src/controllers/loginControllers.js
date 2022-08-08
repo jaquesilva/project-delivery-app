@@ -1,11 +1,11 @@
-const loginServices = require('../services/loginServices').default;
+const loginServices = require('../services/loginServices');
 
 const loginUser = async (req, res) => {
   // try {
     const { email } = req.body;
     const user = await loginServices.login(email);
     console.log(user);
-    if (user === 'Invalid fields') {
+    if (user === 'Invalid fields' || user === undefined) {
       return res.status(404).json({ message: 'não encontrado' });
     }
     return res.status(200).json(user);
