@@ -6,7 +6,6 @@ const registerUser = async (req, res, next) => {
         const newUser = await registerService.create(name, email, password, role);
 
         return res.status(200).json(newUser);
-
     } catch (erro) {
         next(erro);
     }
@@ -14,4 +13,4 @@ const registerUser = async (req, res, next) => {
 
 module.exports = {
     registerUser,
-}
+};
