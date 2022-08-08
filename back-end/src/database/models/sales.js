@@ -1,4 +1,4 @@
-const db = require('.');
+// const db = require('.');
 
 module.exports = (sequelize, DataTypes) => {
   const Sales = sequelize.define('Sales', {
@@ -28,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {
-    sequelize: db,
+    // sequelize: db,
+    sequelize,
     modelName: 'Sales',
     underscored: true,
     timestamps: false

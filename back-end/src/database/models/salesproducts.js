@@ -1,4 +1,4 @@
-const db = require(".");
+// const db = require(".");
 
 module.exports = (sequelize, DataTypes) => {
   const SalesProducts = sequelize.define('SalesProducts', {
@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
   },
   }, {
-    sequelize: db,
+    // sequelize: db,
+    sequelize,
     underscored: true,
     timestamps: false,
     modelName: 'SalesProducts',
