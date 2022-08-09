@@ -14,7 +14,7 @@ export default function Login() {
 
   async function handleLoginButton() {
     try {
-      await requestInfo({ email });
+      await requestInfo({ email, password });
       setIsloginSuced(true);
       console.log('Not show warn');
     } catch (error) {
