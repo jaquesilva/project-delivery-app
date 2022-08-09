@@ -4,6 +4,11 @@ export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isError, setIsError] = useState(false);
+
+  function buttonSubmit(e) {
+    e.preventDefault();
+  }
 
   return (
     <div>
@@ -39,7 +44,20 @@ export default function Register() {
               onChange={ (e) => setPassword(e.target.value) }
             />
           </div>
+
+          <button
+            data-testid="common_register__button-register"
+            type="submit"
+            onClick={ buttonSubmit }
+          >
+            CADASTRAR
+          </button>
         </form>
+        {isError && (
+          <div data-testid="common_register__element-invalid_register">
+            Mensagem de erro
+          </div>
+        )}
       </div>
     </div>
   );
