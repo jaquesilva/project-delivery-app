@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isError, setIsError] = useState(false);
+  const [validData, setValidData] = useState(false);
+
+  const NAME_LENGTH_MIN = 12;
+  const MIN_PASSWORD = 6;
 
   function buttonSubmit(e) {
     e.preventDefault();
   }
+
+  useEffect(() => {
+    function dataValidation() {
+      const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+      const isValid = email.match(regexEmail)
+        && parseFloat(password.length) >= MIN_PASSWORD
+        && name.length >= NAME_LENGTH_MIN;
+
+      setValidData(isValid);
+    }
+
+    dataValidation();
+  }, [name, email, password]);
 
   return (
     <div>
@@ -24,7 +41,7 @@ export default function Register() {
               onChange={ (e) => setName(e.target.value) }
             />
           </div>
-          {name}
+
           <div>
             <h4>Email</h4>
             <input
@@ -49,6 +66,7 @@ export default function Register() {
             data-testid="common_register__button-register"
             type="submit"
             onClick={ buttonSubmit }
+            disabled={ !validData }
           >
             CADASTRAR
           </button>
