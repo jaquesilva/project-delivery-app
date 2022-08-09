@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import postRegisterApi from '../services/postRegisterApi';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -10,8 +11,13 @@ export default function Register() {
   const NAME_LENGTH_MIN = 12;
   const MIN_PASSWORD = 6;
 
-  function buttonSubmit(e) {
+  async function buttonSubmit(e) {
     e.preventDefault();
+    const submitNewRegister = await postRegisterApi({ name, email, password });
+    setName('');
+    setEmail('');
+    setPassword('');
+    console.log(submitNewRegister);
   }
 
   useEffect(() => {
