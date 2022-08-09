@@ -5,7 +5,7 @@ export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isError, setIsError] = useState(false);
+  const [userAlreadyExists, setUserAlreadyExists] = useState(false);
   const [validData, setValidData] = useState(false);
 
   const NAME_LENGTH_MIN = 12;
@@ -14,9 +14,14 @@ export default function Register() {
   async function buttonSubmit(e) {
     e.preventDefault();
     const submitNewRegister = await postRegisterApi({ name, email, password });
-    setName('');
-    setEmail('');
-    setPassword('');
+
+    if (submitNewRegister?.message) {
+      setUserAlreadyExists(true);
+    } else {
+      setName('');
+      setEmail('');
+      setPassword('');
+    }
     console.log(submitNewRegister);
   }
 
@@ -77,9 +82,9 @@ export default function Register() {
             CADASTRAR
           </button>
         </form>
-        {isError && (
+        {userAlreadyExists && (
           <div data-testid="common_register__element-invalid_register">
-            Mensagem de erro
+            Usuário já cadastrado.
           </div>
         )}
       </div>
