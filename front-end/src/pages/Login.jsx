@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router';
 import requestInfo from '../services/requests';
@@ -8,6 +9,8 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [isloginSuced, setIsloginSuced] = useState(false);
   const [isLoginValid, setIsLoginValid] = useState(true);
+
+  const history = useHistory();
 
   async function handleLoginButton() {
     try {
@@ -77,6 +80,7 @@ export default function Login() {
           <button
             type="submit"
             data-testid="common_login__button-register"
+            onClick={ () => history.push('/register') }
           >
             Ainda não tenho conta
           </button>
