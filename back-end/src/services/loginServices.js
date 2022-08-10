@@ -4,13 +4,13 @@ const jwt = require('../utils/jwtTokenGenerator');
 
 const login = async (email, password) => {
   const comparePassword = md5(password);
-  const loginUser = await User.findOne({ where: { email, password: comparePassword } });
-  
-if (!loginUser) { 
+  const loginUser = await User.findOne({
+    where: { email, password: comparePassword },
+  });
+
+  if (!loginUser) {
     return 'Incorrect email or password';
   }
-  
-
 
   const token = jwt.jwtTokenGenerator({ loginUser });
   return token;
