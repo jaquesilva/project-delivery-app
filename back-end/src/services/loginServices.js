@@ -1,12 +1,19 @@
+const md5 = require('md5');
 const { User } = require('../database/models');
+const jwt = require('../utils/jwtTokenGenerator');
 
-const login = async (email) => {
-  const loginUser = await User.findOne({ where: { email } });
-console.log(loginUser);
+const login = async (email, password) => {
+  const comparePassword = md5(password);
+  const loginUser = await User.findOne({
+    where: { email, password: comparePassword },
+  });
+
   if (!loginUser) {
-    return 'Invalid fields';
+    return 'Incorrect email or password';
   }
-  return loginUser;
+
+  const token = jwt.jwtTokenGenerator({ loginUser });
+  return token;
 };
 
 module.exports = {

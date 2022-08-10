@@ -11,10 +11,10 @@ export default function Login() {
   const [isLoginValid, setIsLoginValid] = useState(true);
 
   const history = useHistory();
-
   async function handleLoginButton() {
     try {
-      await requestInfo({ email });
+      const req = await requestInfo({ email, password });
+      console.log(req);
       setIsloginSuced(true);
       console.log('Not show warn');
     } catch (error) {

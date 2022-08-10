@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import postRegisterApi from '../services/postRegisterApi';
 
@@ -6,33 +7,31 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userAlreadyExists, setUserAlreadyExists] = useState(false);
-  const [validData, setValidData] = useState(false);
-
+  const [validData, setValidData] = useState(true);
+  const history = useHistory();
   const NAME_LENGTH_MIN = 12;
   const MIN_PASSWORD = 6;
 
   async function buttonSubmit(e) {
     e.preventDefault();
-    const submitNewRegister = await postRegisterApi({ name, email, password });
-
-    if (submitNewRegister?.message) {
+    try {
+      await postRegisterApi({ name, email, password });
+      history.push('/customer/products');
+    } catch (error) {
       setUserAlreadyExists(true);
-    } else {
       setName('');
       setEmail('');
       setPassword('');
     }
-    console.log(submitNewRegister);
   }
 
   useEffect(() => {
     function dataValidation() {
       const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
       const isValid = email.match(regexEmail)
-        && parseFloat(password.length) >= MIN_PASSWORD
+        && password.length >= MIN_PASSWORD
         && name.length >= NAME_LENGTH_MIN;
-
-      setValidData(isValid);
+      setValidData(!isValid);
     }
 
     dataValidation();
@@ -77,7 +76,7 @@ export default function Register() {
             data-testid="common_register__button-register"
             type="submit"
             onClick={ buttonSubmit }
-            disabled={ !validData }
+            disabled={ validData }
           >
             CADASTRAR
           </button>
