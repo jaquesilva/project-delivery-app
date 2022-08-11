@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router';
-import requestInfo from '../services/requests';
+import { requestInfo } from '../services/requests';
 
 export default function Login() {
   const [email, setEmail] = useState('');
