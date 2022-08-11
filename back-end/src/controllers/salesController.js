@@ -1,4 +1,4 @@
-const salesService = require("../services/salesService");
+const salesService = require('../services/salesService');
 
 const customerSalesOrders = async (req, res, next) => {
   try {
