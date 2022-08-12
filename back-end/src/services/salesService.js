@@ -10,6 +10,17 @@ const findOrdersByUserId = async (userId) => {
   return getOrders;
 };
 
+const findOrdersBySellerId = async (sellerId) => {
+  const getOrders = await sales.findAll({ where: { sellerId } });
+
+  if (!getOrders) {
+    return { message: 'Nenhuma venda encontrada' };
+  }
+
+  return getOrders;
+};
+
 module.exports = {
   findOrdersByUserId,
+  findOrdersBySellerId,
 };

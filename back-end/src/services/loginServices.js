@@ -14,6 +14,7 @@ const login = async (email, password) => {
 
   const token = jwt.jwtTokenGenerator({ loginUser });
   return {
+  id: loginUser.id,
   name: loginUser.name,
   email,
   role: loginUser.role,
