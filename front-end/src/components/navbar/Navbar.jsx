@@ -12,7 +12,7 @@ export default function Navbar() {
         PRODUTOS
       </Link>
       <Link
-        to="my_requests"
+        to="orders"
         data-testid="customer_products__element-navbar-link-orders"
       >
         MEUS PEDIDOS
