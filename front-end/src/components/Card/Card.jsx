@@ -1,34 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Context } from '../../context/Context';
 import './card.css';
 
 export default function Card(product) {
+  const { buyProducts, setBuyProducts } = useContext(Context);
   const { product: newproduct } = product;
   const { id: idProduct, name: title, url_image: image, price } = newproduct;
   const [priceInput, setPriceInput] = useState(0);
   const [priceTotal, setPriceTotal] = useState((price * priceInput));
-  const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([priceTotal]);
+
+  console.log(buyProducts, setBuyProducts);
+  // const buyProducts = [
+  //   {name: title, unitPrice: 2.20, quantity: 2, subTotal: 4.40}
 
   useEffect(() => {
-    setPriceTotal((price * priceInput).toFixed(2));
-  }, [price, priceInput]);
+    // if (priceInput > 0) {
+    //   localStorage.setItem('carrinho', JSON.stringify(products));
+    // }
+  }, [price, priceInput, products]);
 
   const increaseQuant = () => {
-    console.log(price);
+    // setBuyProducts([...buyProducts, {
+    //   name: title,
+    //   unitPrice: price,
+    //   quantity: priceInput,
+    //   subTotal: parseFloat(price) * priceInput }]);
     setPriceInput(priceInput + 1);
-    if (priceInput === 0) {
-      setCart([parseFloat(price)]);
-      console.log(cart);
-    }
-    console.log(priceInput);
-    console.log(parseFloat(price));
-    setCart([parseFloat(price) * priceInput]);
-    console.log(cart);
   };
   const decreaseQuant = () => {
     if (priceInput >= 1) {
       setPriceInput(priceInput - 1);
-      // setCart((price * priceInput).toFixed(2));
-      localStorage.setItem('carrinho', JSON.stringify(cart));
     }
   };
   return (
@@ -51,7 +53,11 @@ export default function Card(product) {
       <p>product Price</p>
       <p data-testid={ `customer_products__element-card-price-${idProduct}` }>
         Valor: R$
-        {priceInput < 2 ? price : priceTotal}
+        {price}
+      </p>
+      <p>
+        Valor Total:
+        { priceTotal}
       </p>
       <button
         type="button"
