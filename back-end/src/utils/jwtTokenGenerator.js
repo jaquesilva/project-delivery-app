@@ -1,5 +1,6 @@
 const { sign, verify } = require('jsonwebtoken');
-const fs = require('fs')
+const fs = require('fs');
+
 const jwtConfig = {
   expiresIn: '10000000d',
 };
