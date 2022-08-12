@@ -17,6 +17,7 @@ export default function Login() {
       console.log(req);
       setIsloginSuced(true);
       console.log('Not show warn');
+      localStorage.setItem('user', JSON.stringify(req));
     } catch (error) {
       return setIsLoginValid(false);
     }
@@ -42,7 +43,7 @@ export default function Login() {
   }
   return (
     <div>
-      <h1>Delivery App</h1>
+      <h1>Deliver App</h1>
       <p>logo do app</p>
       <form>
         <label htmlFor="username">
