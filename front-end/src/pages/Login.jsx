@@ -39,7 +39,15 @@ export default function Login() {
   }, [password, email]);
 
   if (isloginSuced) {
-    return <Redirect to="/customer/products" />;
+    const { role } = JSON.parse(localStorage.getItem('user'));
+    if (role === 'customer') {
+      return <Redirect to="/customer/products" />;
+    }
+    if (role === 'seller') {
+      return <Redirect to="/seller/order" />;
+    }
+    // if (role === 'administrator')
+    // return <Redirect to="/admin/manage" />;
   }
   return (
     <div>
