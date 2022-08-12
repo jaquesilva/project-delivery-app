@@ -13,7 +13,12 @@ const login = async (email, password) => {
   }
 
   const token = jwt.jwtTokenGenerator({ loginUser });
-  return token;
+  return {
+  name: loginUser.name,
+  email: email,
+  role: loginUser.role,
+  token: token,
+  };
 };
 
 module.exports = {
