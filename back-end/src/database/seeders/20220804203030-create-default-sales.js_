@@ -38,7 +38,7 @@ module.exports = {
         {
           id: 4,
           user_id: 2,
-          seller_id: 1,
+          seller_id: 2,
           total_price: 44.44,
           delivery_address: "Rua de entrega 04",
           delivery_number: "444",
