@@ -1,0 +1,16 @@
+.title {
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-items {
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.total {
+  display: flex;
+  flex-direction: row-reverse;
+}
