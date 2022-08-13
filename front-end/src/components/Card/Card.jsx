@@ -32,7 +32,6 @@ export default function Card(product) {
   return (
     <div
       className="card-container"
-      data-testid={ `customer_products__element-card-price-${idProduct}` }
     >
       <h3 data-testid={ `customer_products__element-card-title-${idProduct}` }>
         {title}
@@ -43,14 +42,10 @@ export default function Card(product) {
         alt={ title }
         data-testid={ `customer_products__img-card-bg-image-${idProduct}` }
       />
-      <p>product Price</p>
+      <p>product Price </p>
+      Valor: R$
       <p data-testid={ `customer_products__element-card-price-${idProduct}` }>
-        Valor: R$
-        {price}
-      </p>
-      <p>
-        Valor Total:
-        {price * quantity}
+        {console.log(parseFloat(price))}
       </p>
       <button
         type="button"
