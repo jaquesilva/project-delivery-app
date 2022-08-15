@@ -1,16 +1,18 @@
 const { sign, verify } = require('jsonwebtoken');
+const fs = require('fs');
 
 const jwtConfig = {
   expiresIn: '10000000d',
 };
+// https://www.luiztools.com.br/post/autenticacao-json-web-token-jwt-em-node-js-2/
+const jwtKey = fs.readFileSync('./jwt.evaluation.key', 'utf8');
+// Foi necessário mudar jwt devido ao fato de estar ocorrendo token inválido.
 
-const SECRET = process.env.JWT_SECRET || 'app_delivery';
+const jwtTokenGenerator = (payload = {}) => sign(payload, jwtKey, jwtConfig);
 
-const jwtTokenGenerator = (payload = {}) => sign(payload, SECRET, jwtConfig);
-
-const jwtTokenVerify = (payload) => verify(payload, SECRET);
+const jwtTokenVerify = (token) => verify(token, jwtKey);
 
 module.exports = {
-  jwtTokenGenerator, 
+  jwtTokenGenerator,
   jwtTokenVerify,
 };

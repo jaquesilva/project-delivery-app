@@ -1,8 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import './navbar.css';
 
 export default function Navbar() {
+  const history = useHistory();
+  function getLocalStorageName() {
+    const storage = JSON.parse(localStorage.getItem('user'));
+    console.log(storage.name);
+    return storage.name;
+  }
+  function handleClickLogout() {
+    console.log('click');
+    localStorage.setItem('user', '');
+    return history.push('/login');
+  }
   return (
     <nav className="navbar-container">
       <Link
@@ -12,17 +23,21 @@ export default function Navbar() {
         PRODUTOS
       </Link>
       <Link
-        to="my_requests"
+        to="orders"
         data-testid="customer_products__element-navbar-link-orders"
       >
         MEUS PEDIDOS
       </Link>
       <div data-testid="customer_products__element-navbar-user-full-name">
-        CICLANO
+        {localStorage.getItem('user') ? getLocalStorageName() : null}
       </div>
-      <div data-testid="customer_products__element-navbar-link-logout">
-        <Link to="/">SAIR</Link>
-      </div>
+      <button
+        type="button"
+        data-testid="customer_products__element-navbar-link-logout"
+        onClick={ () => handleClickLogout() }
+      >
+        SAIR
+      </button>
     </nav>
   );
 }

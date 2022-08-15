@@ -7,6 +7,7 @@ const {
   loginRouter,
   registerRouter,
   customerRouter,
+  sellerRouter,
 } = require('../router/index');
 
 const app = express();
@@ -16,6 +17,7 @@ app.use('/images', express.static(path.join(__dirname, '/../images')));
 app.use('/login', loginRouter); 
 app.use('/register', registerRouter);
 app.use('/customer', customerRouter);
+app.use('/seller', sellerRouter);
 app.get('/coffee', (_req, res) => res.status(418).end());
 
 module.exports = app;

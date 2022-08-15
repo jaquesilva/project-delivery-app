@@ -3,6 +3,8 @@ const express = require('express');
 const loginController = require('../controllers/loginControllers');
 const registerController = require('../controllers/registerController');
 const customerController = require('../controllers/customerController');
+const salesController = require('../controllers/salesController');
+const sellerController = require('../controllers/sellerController');
 
 const loginRouter = express.Router();
 loginRouter.post('/', loginController.loginUser);
@@ -12,9 +14,14 @@ registerRouter.post('/', registerController.registerUser);
 
 const customerRouter = express.Router();
 customerRouter.get('/products', customerController.customerProducts);
+customerRouter.get('/orders/:id', salesController.customerSalesOrders);
+
+const sellerRouter = express.Router();
+sellerRouter.get('/orders/:id', sellerController.sellerOrders);
 
 module.exports = {
   loginRouter,
   registerRouter,
   customerRouter,
+  sellerRouter,
 };

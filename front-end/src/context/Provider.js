@@ -1,23 +1,23 @@
-// import PropTypes from 'prop-types';
-// import React, { useState } from 'react';
-// import { Context } from './Context';
+import PropTypes from 'prop-types';
+import React, { useMemo, useState } from 'react';
+import Context from './Context';
 
-// export function Provider({ children }) {
-//   const [name, setName] = useState('');
-//   const [anotherState, setAnotherState] = useState('');
+export function Provider({ children }) {
+  const [buyProducts, setBuyProducts] = useState([]);
 
-//   // const context = {
-//   //   name,
-//   //   setName,
-//   //   anotherState,
-//   //   setAnotherState,
-//   // };
+  const context = useMemo(
+    () => ({
+      buyProducts,
+      setBuyProducts,
+    }),
+    [buyProducts],
+  );
 
-//   return <Context.Provider value={ context }>{children}</Context.Provider>;
-// }
+  return <Context.Provider value={ context }>{children}</Context.Provider>;
+}
 
-// Provider.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
+Provider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-// export default Provider;
+export default Provider;

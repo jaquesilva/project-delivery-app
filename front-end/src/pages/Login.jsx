@@ -17,6 +17,7 @@ export default function Login() {
       console.log(req);
       setIsloginSuced(true);
       console.log('Not show warn');
+      localStorage.setItem('user', JSON.stringify(req));
     } catch (error) {
       return setIsLoginValid(false);
     }
@@ -38,11 +39,19 @@ export default function Login() {
   }, [password, email]);
 
   if (isloginSuced) {
-    return <Redirect to="/customer/products" />;
+    const { role } = JSON.parse(localStorage.getItem('user'));
+    if (role === 'customer') {
+      return <Redirect to="/customer/products" />;
+    }
+    if (role === 'seller') {
+      return <Redirect to="/seller/order" />;
+    }
+    // if (role === 'administrator')
+    // return <Redirect to="/admin/manage" />;
   }
   return (
     <div>
-      <h1>Delivery App</h1>
+      <h1>Deliver App</h1>
       <p>logo do app</p>
       <form>
         <label htmlFor="username">

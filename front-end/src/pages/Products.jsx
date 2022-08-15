@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
 import { requestProducts } from '../services/requests';
 import Card from '../components/Card/Card';
+import './Products.css';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
-  const [load, setLoad] = useState(true);
+  // const [load, setLoad] = useState(false);
   useEffect(() => {
     async function reqProducts() {
       const req = await requestProducts('/customer/products');
       console.log(req);
-      if (req) {
-        setLoad(false);
-        return setProducts(req);
-      }
-      return setLoad(true);
+      // if (req) {
+      setProducts(req);
+      // }
+      // setLoad(false);
     }
     reqProducts();
   }, []);
@@ -24,16 +25,24 @@ export default function Products() {
       <Navbar />
       <h1>Products here</h1>
       <div>
-        {load ? (<div> Carregando produtos</div>)
+        {!products.length ? (<div> Carregando produtos</div>)
           : (products.map((item) => (
             <div key={ item.id }>
-              {Card(item.id, item.name, item.url_image, item.price)}
+              <Card product={ item } />
             </div>
 
           )))}
-        {console.log(products)}
-        {/* {products[0].name} */}
+        <Link to="/customer/checkout">
+          <button
+            className="button-cart"
+            type="button"
+            data-testid="customer_products__button-cart"
 
+          >
+            Ver carrinho:
+            <p data-testid="customer_products__checkout-bottom-value">2</p>
+          </button>
+        </Link>
       </div>
     </div>
   );
