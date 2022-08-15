@@ -4,9 +4,11 @@ import { useHistory } from 'react-router-dom';
 import { requestInfo } from '../services/requests';
 
 export default function Login() {
-  const [email, setEmail] = useState('fulana@deliveryapp.com');
+  // const [email, setEmail] = useState('fulana@deliveryapp.com'); // para facilitar testes
+  // const [password, setPassword] = useState('fulana@123'); // para facilitar os testes
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [button, setButton] = useState(true);
-  const [password, setPassword] = useState('fulana@123');
   const [isloginSuced, setIsloginSuced] = useState(false);
   const [isLoginValid, setIsLoginValid] = useState(true);
 
@@ -15,8 +17,8 @@ export default function Login() {
     e.preventDefault();
     try {
       const req = await requestInfo({ email, password });
-      setIsloginSuced(true);
       localStorage.setItem('user', JSON.stringify(req));
+      setIsloginSuced(true);
     } catch (error) {
       return setIsLoginValid(false);
     }
