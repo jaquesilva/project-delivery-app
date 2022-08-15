@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import getSalesBySellerId from '../services/getSalesByUserId';
 
 export default function SellersOrders() {
@@ -6,11 +7,7 @@ export default function SellersOrders() {
 
   const [sales, setSales] = useState([]);
 
-  async function getApi() {
-    const salesBySellerId = await getSalesBySellerId(sellerId);
-    setSales(salesBySellerId);
-  }
-
+  const history = useHistory();
   function handleClickLogout() {
     console.log('click');
     localStorage.setItem('user', '');
@@ -18,30 +15,35 @@ export default function SellersOrders() {
   }
 
   useEffect(() => {
-    getApi();
-  }, []);
+    getSalesBySellerId(sellerId).then(setSales);
+  }, [sellerId]);
 
   return (
     <div>
-
       <nav className="navbar-container">
         <h1>
           PEDIDOS
-        </h1>      
+        </h1>
         <div data-testid="">
           {localStorage.getItem('user') ? getLocalStorageName() : null}
         </div>
         <button
           type="button"
           data-testid="customer_products__element-navbar-link-logout"
-          onClick={ () => handleClickLogout() }
+          onClick={ handleClickLogout }
         >
           SAIR
         </button>
       </nav>
 
       <div> CARDS C/ PEDIDOS </div>
-      {sales.map(({ id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber }) => {
+      {sales.map(({
+        id,
+        status,
+        saleDate,
+        totalPrice,
+        deliveryAddress,
+        deliveryNumber }) => {
         console.log(saleDate, totalPrice);
         return (
           <div key={ id }>
@@ -69,5 +71,5 @@ export default function SellersOrders() {
       {sales.length === 0 && <div>Nenhuma venda por aqui!</div>}
 
     </div>
-  )
-};
+  );
+}

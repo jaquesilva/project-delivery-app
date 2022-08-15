@@ -27,7 +27,7 @@ export default function Card(product) {
     };
     updateBuyProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quantity]);
+  }, [quantity, title, price, buyProducts, setBuyProducts]);
 
   return (
     <div
