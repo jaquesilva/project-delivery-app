@@ -1,22 +1,21 @@
-import { useHistory } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { requestInfo } from '../services/requests';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('fulana@deliveryapp.com');
   const [button, setButton] = useState(true);
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('fulana@123');
   const [isloginSuced, setIsloginSuced] = useState(false);
   const [isLoginValid, setIsLoginValid] = useState(true);
 
   const history = useHistory();
-  async function handleLoginButton() {
+  async function handleLoginButton(e) {
+    e.preventDefault();
     try {
       const req = await requestInfo({ email, password });
-      console.log(req);
       setIsloginSuced(true);
-      console.log('Not show warn');
       localStorage.setItem('user', JSON.stringify(req));
     } catch (error) {
       return setIsLoginValid(false);
@@ -73,21 +72,18 @@ export default function Login() {
           />
         </label>
         <div>
-
           <button
-            type="button"
+            type="submit"
             data-testid="common_login__button-login"
             disabled={ button }
-            onClick={ () => handleLoginButton() }
+            onClick={ handleLoginButton }
           >
             login
           </button>
-
         </div>
         <div>
-
           <button
-            type="submit"
+            type="button"
             data-testid="common_login__button-register"
             onClick={ () => history.push('/register') }
           >
