@@ -34,7 +34,7 @@ export default function Products() {
           )))}
         <Link to="/customer/checkout">
           <button
-            id="button-cart"
+            className="button-cart"
             type="button"
             data-testid="customer_products__button-cart"
 
