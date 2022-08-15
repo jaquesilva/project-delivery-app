@@ -40,7 +40,7 @@ export default function Products() {
           )))}
         <button
           disabled={ able }
-          id="button-cart"
+          className="button-cart"
           type="button"
           data-testid="customer_products__button-cart"
           onClick={ () => history.push('/customer/checkout') }
