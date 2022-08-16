@@ -9,9 +9,19 @@ export async function requestInfo(body) {
 
   return result.data;
 }
+// fonte trybe TFC
+export const setToken = (token) => {
+  api.defaults.headers.common.authorization = token;
+};
 
 export async function requestProducts(endpoint) {
   const result = await api.get(endpoint);
+
+  return result.data;
+}
+
+export async function postRegisterAdm(body) {
+  const result = await api.post('/admRegister', body);
 
   return result.data;
 }
