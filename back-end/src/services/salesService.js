@@ -20,7 +20,16 @@ const findOrdersBySellerId = async (sellerId) => {
   return getOrders;
 };
 
+const customerCheckout = async (body) => {
+  const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status } = body;
+  const addSale = await sales.create(
+    { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status },
+    );
+  return addSale;
+};
+
 module.exports = {
   findOrdersByUserId,
   findOrdersBySellerId,
+  customerCheckout,
 };

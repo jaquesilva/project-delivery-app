@@ -15,6 +15,21 @@ const customerSalesOrders = async (req, res, next) => {
   }
 };
 
+const customerCheckout = async (req, res, next) => {
+  try {
+    const addSale = await salesService.customerCheckout(req.body);
+    
+    if (!addSale) {
+      return res.status(401).json({ message: 'Sale already exists' });
+    }
+
+    return res.status(201).json({ message: 'Created' });
+  } catch (erro) {
+    next(erro);
+  }
+};
+
 module.exports = {
   customerSalesOrders,
+  customerCheckout,
 };

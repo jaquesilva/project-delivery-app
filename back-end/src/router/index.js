@@ -15,6 +15,7 @@ registerRouter.post('/', registerController.registerUser);
 const customerRouter = express.Router();
 customerRouter.get('/products', customerController.customerProducts);
 customerRouter.get('/orders/:id', salesController.customerSalesOrders);
+customerRouter.post('/checkout', salesController.customerCheckout);
 
 const sellerRouter = express.Router();
 sellerRouter.get('/orders/:id', sellerController.sellerOrders);
