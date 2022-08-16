@@ -5,9 +5,14 @@ import './CustomerCheckout.css';
 import CustomerForm from './CustomerForm';
 
 export default function CustomerCheckout() {
-  const { buyProducts } = useContext(Context);
+  const { buyProducts, setBuyProducts } = useContext(Context);
 
   let totalPrice = 0;
+
+  function removeProduct(idProduct) {
+    const saveCar = buyProducts.filter((element) => element.id !== idProduct);
+    setBuyProducts(saveCar);
+  }
 
   return (
     <div>
@@ -24,9 +29,8 @@ export default function CustomerCheckout() {
           </div>
           <div>
             {
-              buyProducts.map(({ name, unitPrice, quantity, subTotal }, index) => {
+              buyProducts.map(({ id, name, unitPrice, quantity, subTotal }, index) => {
                 totalPrice += subTotal;
-                console.log(typeof totalPrice);
                 return (
                   <div
                     key={ name }
@@ -75,7 +79,7 @@ export default function CustomerCheckout() {
                         `customer_checkout__element-order-table-remove-${index}`
                       }
                       type="button"
-                      // onClick={}
+                      onClick={ () => removeProduct(id) }
                     >
                       Remover Item
                     </button>

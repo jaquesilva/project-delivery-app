@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext, useState } from 'react';
 import Context from '../../context/Context';
 import './card.css';
 
@@ -25,6 +25,7 @@ export default function Card(product) {
       console.log('aqui', item);
       return (
         setBuyProducts([...buyProducts, {
+          id: idProduct,
           name: title,
           unitPrice: parseFloat(price),
           quantity: quantity + 1,
