@@ -1,17 +1,13 @@
-// import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import Context from '../context/Context';
 import Navbar from '../components/navbar/Navbar';
 import './CustomerCheckout.css';
 import CustomerForm from './CustomerForm';
 
 export default function CustomerCheckout() {
+  const { buyProducts } = useContext(Context);
   // const { name, unitPrice, quantity, subTotal } = cart[i];
   // Array provisório:
-  const buyProducts = [
-    { name: 'Skol Lata 250ml', quantity: 2, unitPrice: 2.20, subTotal: 4.40 },
-    { name: 'Heineken 600ml', quantity: 2, unitPrice: 7.50, subTotal: 16.00 },
-    { name: 'Antarctica Pilsen 300ml', quantity: 2, unitPrice: 2.49, subTotal: 4.98 },
-    { name: 'Brahma 600ml', quantity: 2, unitPrice: 7.50, subTotal: 15.00 },
-  ];
 
   const priceTotal = 100;
 
@@ -22,16 +18,29 @@ export default function CustomerCheckout() {
         <h2>Finalizar Pedido</h2>
         <div>
           <div className="title">
-            <ol>Item</ol>
-            <ul>Descrição</ul>
-            <ul>Quantidade</ul>
-            <ul>Valor Unitário</ul>
-            <ul>Sub-total</ul>
+            <div>Item</div>
+            <div>Descrição</div>
+            <div>Quantidade</div>
+            <div>Valor Unitário</div>
+            <div>Sub-total</div>
           </div>
           <div>
             {
               buyProducts.map(({ name, unitPrice, quantity, subTotal }, index) => (
-                <div key={ name } className="list-items">
+                <div
+                  key={ name }
+                  className="list-items"
+
+                >
+                  <div
+                    data-testid={
+                      `customer_checkout__element-order-table-item-number-${index}`
+                    }
+
+                  >
+                    {index + 1}
+                  </div>
+
                   <div
                     data-testid={ `customer_checkout__element-order-table-name-${index}` }
                   >
