@@ -1,12 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
+import { Provider } from './context/Provider';
 import CustomerCheckout from './pages/CustomerCheckout';
 import CustomerOrders from './pages/CustomerOrders';
 import Login from './pages/Login';
 import Products from './pages/Products';
 import Register from './pages/Register';
-// import { Provider } from './context/Provider';
 
 function App() {
   return (
