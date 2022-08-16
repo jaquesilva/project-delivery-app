@@ -9,6 +9,7 @@ export default function CustomerCheckout() {
   const { buyProducts } = useContext(Context);
 
   const priceTotal = 100;
+  const textTest = 'customer_checkout__element-order-table-item-number';
 
   return (
     <div>
@@ -29,7 +30,7 @@ export default function CustomerCheckout() {
                 <tr
                   key={ name }
                   className="list-items"
-                  data-testid={ `customer_checkout__element-order-table-item-number-${index}`}
+                  data-testid={ `${textTest}-${index}` }
                 >
                   <td
                     data-testid={ `customer_checkout__element-order-table-name-${index}` }
