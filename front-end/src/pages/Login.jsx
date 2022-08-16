@@ -11,12 +11,13 @@ export default function Login() {
   const [button, setButton] = useState(true);
   const [isloginSuced, setIsloginSuced] = useState(false);
   const [isLoginValid, setIsLoginValid] = useState(true);
-
+  const [reqUser, setReqUser] = useState({});
   const history = useHistory();
   async function handleLoginButton(e) {
     e.preventDefault();
     try {
       const req = await requestInfo({ email, password });
+      setReqUser(req);
       localStorage.setItem('user', JSON.stringify(req));
       setIsloginSuced(true);
     } catch (error) {
@@ -40,7 +41,7 @@ export default function Login() {
   }, [password, email]);
 
   if (isloginSuced) {
-    const { role } = JSON.parse(localStorage.getItem('user'));
+    const { role } = reqUser;
     if (role === 'customer') {
       return <Redirect to="/customer/products" />;
     }
