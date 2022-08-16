@@ -9,13 +9,14 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [isloginSuced, setIsloginSuced] = useState(false);
   const [isLoginValid, setIsLoginValid] = useState(true);
-
+  const [reqUser, setReqUser] = useState({});
   const history = useHistory();
   async function handleLoginButton() {
     try {
       const req = await requestInfo({ email, password });
       console.log(req);
       setIsloginSuced(true);
+      setReqUser(req);
       console.log('Not show warn');
       localStorage.setItem('user', JSON.stringify(req));
     } catch (error) {
@@ -39,7 +40,7 @@ export default function Login() {
   }, [password, email]);
 
   if (isloginSuced) {
-    const { role } = JSON.parse(localStorage.getItem('user'));
+    const { role } = reqUser;
     if (role === 'customer') {
       return <Redirect to="/customer/products" />;
     }

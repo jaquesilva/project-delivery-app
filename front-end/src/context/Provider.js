@@ -5,6 +5,8 @@ import Context from './Context';
 export function Provider({ children }) {
   const [buyProducts, setBuyProducts] = useState([]);
 
+  console.log(buyProducts);
+
   const context = useMemo(
     () => ({
       buyProducts,
