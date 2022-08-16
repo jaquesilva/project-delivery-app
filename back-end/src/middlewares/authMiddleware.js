@@ -1,23 +1,17 @@
-// const validateTokenMiddleware = async (req, res, next) => {
-//   const token = req.headers.authorization;
-//   // console.log(token);
+const jwt = require('../utils/jwtTokenGenerator');
 
-//   if (!token) return res.status(401).json({ message: 'Token must be a valid token' });
+const validateTokenMiddleware = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+    jwt.jwtTokenVerify(token);
 
-//   try {
-//     const decoded = jwtTokenGenerator.jwtTokenVerify(token);
-//     console.log(decoded);
+    // if (!decoded) return res.status(401).json({ message: 'Token must be a valid token' });
 
-//     // if (req.url === '/login/validate') {
-//     //   const { role } = decoded.loginUser;
-//     //   return res.status(200).json({ role });
-//     }
-//     next();
-//   } catch (error) {
-//       return res.status(401).json({ message: 'Token must be a valid token' });
-//     }
+    // return decoded;
+  } catch (error) {
+      return res.status(401).json({ message: 'Token must be a valid token' });
+    }
+    next();
+};
 
-//     next(error);
-// };
-
-// export default validateTokenMiddleware;
+module.exports = validateTokenMiddleware;

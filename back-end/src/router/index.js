@@ -5,6 +5,7 @@ const registerController = require('../controllers/registerController');
 const customerController = require('../controllers/customerController');
 const salesController = require('../controllers/salesController');
 const sellerController = require('../controllers/sellerController');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 const loginRouter = express.Router();
 loginRouter.post('/', loginController.loginUser);
@@ -15,7 +16,7 @@ registerRouter.post('/', registerController.registerUser);
 const customerRouter = express.Router();
 customerRouter.get('/products', customerController.customerProducts);
 customerRouter.get('/orders/:id', salesController.customerSalesOrders);
-customerRouter.post('/checkout', salesController.customerCheckout);
+customerRouter.post('/checkout', authMiddleware, salesController.customerCheckout);
 
 const sellerRouter = express.Router();
 sellerRouter.get('/orders/:id', sellerController.sellerOrders);
