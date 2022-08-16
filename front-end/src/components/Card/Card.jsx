@@ -1,38 +1,74 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import Context from '../../context/Context';
 import './card.css';
 
 export default function Card(product) {
-  const { buyProducts, setBuyProducts } = useContext(Context);
-
   const { product: newproduct } = product;
   const { id: idProduct, name: title, url_image: image, price } = newproduct;
-
+  const { buyProducts, setBuyProducts } = useContext(Context);
   const [quantity, setQuantity] = useState(0);
 
-  useEffect(() => {
-    const updateBuyProducts = () => {
-      const filterBuyProducts = buyProducts.filter(
-        (p) => p.name !== title && p.quantity !== 0,
-      );
-      setBuyProducts([
-        ...filterBuyProducts,
-        {
+  function handleClickLess() {
+    const carts = buyProducts.find((item) => item.name === title);
+    if (carts) {
+      carts.quantity -= 1;
+      carts.subTotal = parseFloat(carts.unitPrice) * (quantity - 1);
+      setBuyProducts([...buyProducts]);
+    }
+  }
+
+  function addToCart() {
+    const item = buyProducts.find((item1) => item1.name === title);
+    console.log(title);
+    console.log(item);
+    if (!item) {
+      console.log('aqui', item);
+      return (
+        setBuyProducts([...buyProducts, {
           name: title,
-          unitPrice: price,
-          quantity,
-          subTotal: parseFloat(price) * quantity,
-        },
-      ]);
-    };
-    updateBuyProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quantity, title, price, buyProducts, setBuyProducts]);
+          unitPrice: parseFloat(price),
+          quantity: quantity + 1,
+          subTotal: parseFloat(price),
+        }])
+      );
+    }
+    item.quantity += 1;
+    item.subTotal = parseFloat(item.unitPrice) * (quantity + 1);
+    console.log(buyProducts);
+    return setBuyProducts([...buyProducts]);
+  }
+
+  function handleChange(e) {
+    console.log('console do target', e.target.value);
+    const foco = e.target.value;
+    if (foco) {
+      setQuantity(foco);
+
+      let item = buyProducts.find((item1) => item1.name === title);
+      console.log(item);
+      if (!item) {
+        item = {
+          name: title,
+          unitPrice: parseFloat(price),
+          quantity: parseFloat(foco),
+          subTotal: parseFloat(price) * parseFloat(foco),
+        };
+        const newItem = [...buyProducts];
+        newItem.push(item);
+        setBuyProducts(newItem);
+        return;
+      }
+      console.log('quantity', foco);
+      if (quantity >= 0) {
+        item.subTotal = parseFloat(item.unitPrice) * parseFloat(foco);
+      }
+      return setBuyProducts([...buyProducts]);
+    }
+  }
 
   return (
     <div
       className="card-container"
-      data-testid={ `customer_products__element-card-price-${idProduct}` }
     >
       <h3 data-testid={ `customer_products__element-card-title-${idProduct}` }>
         {title}
@@ -43,32 +79,38 @@ export default function Card(product) {
         alt={ title }
         data-testid={ `customer_products__img-card-bg-image-${idProduct}` }
       />
-      <p>product Price</p>
+      <p>product Price </p>
+      Valor: R$
       <p data-testid={ `customer_products__element-card-price-${idProduct}` }>
-        Valor: R$
-        {price}
-      </p>
-      <p>
-        Valor Total:
-        {price * quantity}
+        {price.toString().replace('.', ',')}
       </p>
       <button
+        name="decrease"
         type="button"
         data-testid={ `customer_products__button-card-rm-item-${idProduct}` }
-        onClick={ () => setQuantity(quantity - 1) }
+        onClick={ () => {
+          if (quantity > 0) {
+            setQuantity(quantity - 1);
+            handleClickLess();
+          }
+        } }
       >
         -
       </button>
 
       <input
+        name="increase"
         value={ quantity }
         data-testid={ `customer_products__input-card-quantity-${idProduct}` }
-        onChange={ ({ target: { value } }) => setQuantity(parseFloat(value)) }
+        onChange={ handleChange }
       />
       <button
         type="button"
         data-testid={ `customer_products__button-card-add-item-${idProduct}` }
-        onClick={ () => setQuantity(quantity + 1) }
+        onClick={ () => {
+          setQuantity(quantity + 1);
+          addToCart();
+        } }
       >
         +
       </button>

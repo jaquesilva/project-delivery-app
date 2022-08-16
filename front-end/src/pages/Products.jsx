@@ -1,25 +1,31 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import Context from '../context/Context';
 import Navbar from '../components/navbar/Navbar';
 import { requestProducts } from '../services/requests';
 import Card from '../components/Card/Card';
 import './Products.css';
 
 export default function Products() {
+  const { buyProducts } = useContext(Context);
   const [products, setProducts] = useState([]);
-  // const [load, setLoad] = useState(false);
+  const history = useHistory();
+  const [able, setAble] = useState(true);
+
   useEffect(() => {
+    function buttonAble() {
+      if (buyProducts.length > 0) {
+        setAble(false);
+      }
+    }
     async function reqProducts() {
       const req = await requestProducts('/customer/products');
-      console.log(req);
-      // if (req) {
-      setProducts(req);
-      // }
-      // setLoad(false);
+      const productsFormated = req.map((item) => ({ ...item, quantity: 0 }));
+      setProducts(productsFormated);
     }
+    buttonAble();
     reqProducts();
-  }, []);
-
+  }, [buyProducts.length]);
   return (
     <div>
       <Navbar />
@@ -32,17 +38,24 @@ export default function Products() {
             </div>
 
           )))}
-        <Link to="/customer/checkout">
-          <button
-            className="button-cart"
-            type="button"
-            data-testid="customer_products__button-cart"
+        <button
+          disabled={ able }
+          className="button-cart"
+          type="button"
+          data-testid="customer_products__button-cart"
+          onClick={ () => history.push('/customer/checkout') }
 
-          >
-            Ver carrinho:
-            <p data-testid="customer_products__checkout-bottom-value">2</p>
-          </button>
-        </Link>
+        >
+          Ver carrinho:
+          <p data-testid="customer_products__checkout-bottom-value">
+            {console.log(buyProducts)}
+            {buyProducts
+              .map((item) => parseFloat(item.subTotal))
+              .reduce((prev, curr) => prev + curr, 0).toFixed(2)
+              .toString()
+              .replace('.', ',')}
+          </p>
+        </button>
       </div>
     </div>
   );
