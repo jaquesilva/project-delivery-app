@@ -46,7 +46,7 @@ export default function Login() {
       return <Redirect to="/customer/products" />;
     }
     if (role === 'seller') {
-      return <Redirect to="/seller/order" />;
+      return <Redirect to="/seller/orders" />;
     }
     // if (role === 'administrator')
     // return <Redirect to="/admin/manage" />;
