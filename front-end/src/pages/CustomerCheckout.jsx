@@ -1,15 +1,13 @@
 import { useContext } from 'react';
-import Context from '../context/Context';
 import Navbar from '../components/navbar/Navbar';
+import Context from '../context/Context';
 import './CustomerCheckout.css';
 import CustomerForm from './CustomerForm';
 
 export default function CustomerCheckout() {
   const { buyProducts } = useContext(Context);
-  // const { name, unitPrice, quantity, subTotal } = cart[i];
-  // Array provisório:
 
-  const priceTotal = 100;
+  let totalPrice = 0;
 
   return (
     <div>
@@ -26,58 +24,64 @@ export default function CustomerCheckout() {
           </div>
           <div>
             {
-              buyProducts.map(({ name, unitPrice, quantity, subTotal }, index) => (
-                <div
-                  key={ name }
-                  className="list-items"
-
-                >
+              buyProducts.map(({ name, unitPrice, quantity, subTotal }, index) => {
+                totalPrice += subTotal;
+                console.log(typeof totalPrice);
+                return (
                   <div
-                    data-testid={
-                      `customer_checkout__element-order-table-item-number-${index}`
-                    }
+                    key={ name }
+                    className="list-items"
 
                   >
-                    {index + 1}
-                  </div>
+                    <div
+                      data-testid={
+                        `customer_checkout__element-order-table-item-number-${index}`
+                      }
 
-                  <div
-                    data-testid={ `customer_checkout__element-order-table-name-${index}` }
-                  >
-                    { name }
+                    >
+                      {index + 1}
+                    </div>
+
+                    <div
+                      data-testid={
+                        `customer_checkout__element-order-table-name-${index}`
+                      }
+                    >
+                      { name }
+                    </div>
+                    <div
+                      data-testid={
+                        `customer_checkout__element-order-table-quantity-${index}`
+                      }
+                    >
+                      { quantity }
+                    </div>
+                    <div
+                      data-testid={
+                        `customer_checkout__element-order-table-unit-price-${index}`
+                      }
+                    >
+                      { unitPrice.toFixed(2).toString().replace('.', ',') }
+                    </div>
+                    <div
+                      data-testid={
+                        `customer_checkout__element-order-table-sub-total-${index}`
+                      }
+                    >
+                      { subTotal.toFixed(2).toString().replace('.', ',') }
+                    </div>
+                    <button
+                      data-testid={
+                        `customer_checkout__element-order-table-remove-${index}`
+                      }
+                      type="button"
+                      // onClick={}
+                    >
+                      Remover Item
+                    </button>
                   </div>
-                  <div
-                    data-testid={
-                      `customer_checkout__element-order-table-quantity-${index}`
-                    }
-                  >
-                    { quantity }
-                  </div>
-                  <div
-                    data-testid={
-                      `customer_checkout__element-order-table-unit-price-${index}`
-                    }
-                  >
-                    { unitPrice }
-                  </div>
-                  <div
-                    data-testid={
-                      `customer_checkout__element-order-table-sub-total-${index}`
-                    }
-                  >
-                    { subTotal }
-                  </div>
-                  <button
-                    data-testid={
-                      `customer_checkout__element-order-table-remove-${index}`
-                    }
-                    type="button"
-                    // onClick={}
-                  >
-                    Remover Item
-                  </button>
-                </div>
-              ))
+                );
+              })
             }
           </div>
           <div className="total">
@@ -85,7 +89,7 @@ export default function CustomerCheckout() {
               data-testid="customer_checkout__element-order-total-price"
             >
               Total: R$
-              {priceTotal}
+              {totalPrice.toFixed(2).toString().replace('.', ',')}
             </h1>
           </div>
         </div>
