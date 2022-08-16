@@ -5,10 +5,11 @@ export default function CustomerForm() {
       <form action="" method="">
         <div>
           <h2> P. Vendedora Responsável</h2>
-          <select>
+          <select
+            data-testid="customer_checkout__select-seller"
+          >
             <option
               value="vendedor1"
-              data-testid="customer_checkout__select-seller"
             >
               Vendedor 1
             </option>
