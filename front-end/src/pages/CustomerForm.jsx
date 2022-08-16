@@ -1,4 +1,8 @@
+import { useHistory } from 'react-router-dom';
+
 export default function CustomerForm() {
+  const history = useHistory();
+
   return (
     <div>
       <h2>Detalhes e Endereço para Entrega</h2>
@@ -36,6 +40,7 @@ export default function CustomerForm() {
         <button
           type="submit"
           data-testid="customer_checkout__button-submit-order"
+          onClick={ () => history.push('/customer/orders') }
         >
           FINALIZAR PEDIDO
         </button>

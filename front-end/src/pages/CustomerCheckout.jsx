@@ -18,11 +18,11 @@ export default function CustomerCheckout() {
         <h2>Finalizar Pedido</h2>
         <div>
           <div className="title">
-            <ol>Item</ol>
-            <ul>Descrição</ul>
-            <ul>Quantidade</ul>
-            <ul>Valor Unitário</ul>
-            <ul>Sub-total</ul>
+            <div>Item</div>
+            <div>Descrição</div>
+            <div>Quantidade</div>
+            <div>Valor Unitário</div>
+            <div>Sub-total</div>
           </div>
           <div>
             {
