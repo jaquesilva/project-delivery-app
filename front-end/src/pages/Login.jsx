@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
 import { useHistory } from 'react-router-dom';
-import { requestInfo } from '../services/requests';
+import { requestInfo, setToken } from '../services/requests';
 
 export default function Login() {
   // const [email, setEmail] = useState('fulana@deliveryapp.com'); // para facilitar testes
@@ -18,6 +18,7 @@ export default function Login() {
     try {
       const req = await requestInfo({ email, password });
       setReqUser(req);
+      setToken(req.token);
       localStorage.setItem('user', JSON.stringify(req));
       setIsloginSuced(true);
     } catch (error) {
@@ -48,8 +49,7 @@ export default function Login() {
     if (role === 'seller') {
       return <Redirect to="/seller/orders" />;
     }
-    // if (role === 'administrator')
-    // return <Redirect to="/admin/manage" />;
+    if (role === 'administrator') { return <Redirect to="/admin/manage" />; }
   }
   return (
     <div>
