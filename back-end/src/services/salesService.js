@@ -23,7 +23,7 @@ const findOrdersBySellerId = async (sellerId) => {
 const customerCheckout = async (body) => {
   const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status } = body;
   const addSale = await sales.create(
-    { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status },
+    { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status, saleDate: new Date() },
     );
   return addSale;
 };
