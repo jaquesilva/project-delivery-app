@@ -9,6 +9,8 @@ export default function CustomerForm(total) {
   const [deliveryAddress, setDeliveryAddress] = useState();
   const [deliveryNumber, setdeliveryNumber] = useState();
 
+  const { buyProducts } = useContext(Context);
+
   const history = useHistory();
 
   async function onClickSubmit() {
@@ -20,6 +22,7 @@ export default function CustomerForm(total) {
       totalPrice,
       deliveryAddress,
       deliveryNumber,
+      buyProducts,
     });
 
     if (post.message === 'Created') {
