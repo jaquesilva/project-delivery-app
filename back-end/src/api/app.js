@@ -4,6 +4,8 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const middlewareErro = require('../middlewares/erro');
+const registerController = require('../controllers/registerAdmController');
+
 const {
   loginRouter,
   registerRouter,
@@ -19,6 +21,7 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/customer', customerRouter);
 app.use('/seller', sellerRouter);
+app.post('/admRegister', registerController.registerUser);
 app.get('/coffee', (_req, res) => res.status(418).end());
 app.use(middlewareErro);
 
