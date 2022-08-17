@@ -1,7 +1,31 @@
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import postCheckout from '../services/postCheckout';
 
-export default function CustomerForm() {
+export default function CustomerForm(total) {
+  const { total: totalPrice } = total;
+
+  const [sellerId, setSellerId] = useState();
+  const [deliveryAddress, setDeliveryAddress] = useState();
+  const [deliveryNumber, setdeliveryNumber] = useState();
+
   const history = useHistory();
+
+  async function onClickSubmit() {
+    const user = await JSON.parse(localStorage.getItem('user'));
+
+    const post = await postCheckout({
+      userId: user.id,
+      sellerId,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+    });
+
+    if (post.message === 'Created') {
+      history.push('/customer/orders');
+    }
+  }
 
   return (
     <div>
@@ -9,14 +33,14 @@ export default function CustomerForm() {
       <form action="" method="">
         <div>
           <h2> P. Vendedora Responsável</h2>
+
           <select
             data-testid="customer_checkout__select-seller"
+            onChange={ ({ target }) => setSellerId(target.value) }
           >
-            <option
-              value="vendedor1"
-            >
-              Vendedor 1
-            </option>
+            <option value="1">Selecione o vendedor</option>
+            <option value="1">Vendedor 1</option>
+            <option value="2">Vendedor 2</option>
           </select>
         </div>
         <div>
@@ -25,6 +49,7 @@ export default function CustomerForm() {
             placeholder="Endereço"
             type="text"
             data-testid="customer_checkout__input-address"
+            onChange={ ({ target }) => setDeliveryAddress(target.value) }
           />
         </div>
         <div>
@@ -33,6 +58,7 @@ export default function CustomerForm() {
             placeholder="Número"
             type="number"
             data-testid="customer_checkout__input-addressNumber"
+            onChange={ ({ target }) => setdeliveryNumber(target.value) }
           />
         </div>
       </form>
@@ -40,7 +66,7 @@ export default function CustomerForm() {
         <button
           type="submit"
           data-testid="customer_checkout__button-submit-order"
-          onClick={ () => history.push('/customer/orders') }
+          onClick={ onClickSubmit }
         >
           FINALIZAR PEDIDO
         </button>
