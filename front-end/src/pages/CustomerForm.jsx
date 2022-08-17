@@ -10,7 +10,7 @@ export default function CustomerForm(total) {
   const [deliveryAddress, setDeliveryAddress] = useState();
   const [deliveryNumber, setdeliveryNumber] = useState();
 
-  const { buyProducts, setBuyProducts } = useContext(Context);
+  const { buyProducts } = useContext(Context);
   const { setSaleId } = useContext(Context);
 
   const history = useHistory();
@@ -27,13 +27,9 @@ export default function CustomerForm(total) {
       buyProducts,
     });
 
-    if (post.message === 'Created') {
-      setDeliveryAddress('');
-      setSellerId('');
-      setdeliveryNumber('');
-      setBuyProducts([]);
-      setSaleId(post.addSale.id);
-      history.push(`/customer/orders/${post.addSale.id}`);
+    if (post) {
+      setSaleId(post);
+      history.push(`/customer/orders/${post}`);
     }
   }
 

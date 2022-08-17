@@ -42,7 +42,7 @@ const customerCheckout = async (body) => {
       }),
     );
 
-  return addSale;
+  return addSale.id;
 };
 
 const getBySaleId = async (saleId) => {

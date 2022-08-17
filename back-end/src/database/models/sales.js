@@ -4,6 +4,11 @@ module.exports = (sequelize, DataTypes) => {
   const Sales = sequelize.define(
     "sales",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,

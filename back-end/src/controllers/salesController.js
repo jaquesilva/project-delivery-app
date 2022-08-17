@@ -39,7 +39,7 @@ const customerCheckout = async (req, res, next) => {
       return res.status(401).json({ message: 'Sale already exists' });
     }
 
-    return res.status(201).json({ message: 'Created', addSale });
+    return res.status(201).json(addSale);
   } catch (erro) {
     next(erro);
   }
