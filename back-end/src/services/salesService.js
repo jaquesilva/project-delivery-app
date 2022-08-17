@@ -21,10 +21,9 @@ const findOrdersBySellerId = async (sellerId) => {
 };
 
 const customerCheckout = async (body) => {
-  const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber } = body;
+  const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, buyProducts } = body;
   const addSale = await sales.create(
-    { 
-      userId, 
+    { userId, 
       sellerId, 
       totalPrice,
       deliveryAddress,
@@ -33,6 +32,14 @@ const customerCheckout = async (body) => {
       saleDate: new Date(),
     },
     );
+
+    await Promise.all(
+      buyProducts.map(async ({ id, quantity }) => {
+        const { id: saleId } = addSale;
+        await sales.create({ saleId, productId: id, quantity });
+      }),
+    );
+
   return addSale;
 };
 
