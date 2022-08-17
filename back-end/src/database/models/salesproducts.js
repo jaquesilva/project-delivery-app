@@ -34,8 +34,10 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
       timestamps: false,
       modelName: "SalesProducts",
+      tableName: "SalesProducts",
     }
   );
+
   SalesProducts.associate = (models) => {
     SalesProducts.belongsTo(models.sales, {
       foreignKey: "saleId",
