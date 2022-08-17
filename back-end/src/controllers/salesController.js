@@ -15,7 +15,6 @@ const customerSalesOrders = async (req, res, next) => {
   }
 };
 
-
 const getByUserId = async (req, res, next) => {
   try {
     const { userId } = req.body;

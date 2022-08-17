@@ -4,7 +4,7 @@ const findOrdersByUserId = async (userId) => {
   const getOrders = await sales.findAll({ where: { userId } });
 
   if (!getOrders) {
-    return { message: 'Nenhuma venda encontrada' };
+    return { message: 'Nenhuma venda' };
   }
 
   return getOrders;
@@ -39,7 +39,6 @@ const customerCheckout = async (body) => {
         const { id: saleId } = addSale;
 
         await SalesProducts.create({ saleId, productId: id, quantity });
-      
       }),
     );
 

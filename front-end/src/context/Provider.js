@@ -11,7 +11,7 @@ export function Provider({ children }) {
       buyProducts,
       setBuyProducts,
       saleId,
-      setSaleId
+      setSaleId,
     }),
     [buyProducts, saleId],
   );
