@@ -48,7 +48,6 @@ export default function Products() {
         >
           Ver carrinho:
           <p data-testid="customer_products__checkout-bottom-value">
-            {console.log(buyProducts)}
             {buyProducts
               .map((item) => parseFloat(item.subTotal))
               .reduce((prev, curr) => prev + curr, 0).toFixed(2)

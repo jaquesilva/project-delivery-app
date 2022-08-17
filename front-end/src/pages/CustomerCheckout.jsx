@@ -98,7 +98,7 @@ export default function CustomerCheckout() {
           </div>
         </div>
       </div>
-      <CustomerForm />
+      <CustomerForm total={ totalPrice.toFixed(2) } />
     </div>
   );
 }

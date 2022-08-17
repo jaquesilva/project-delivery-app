@@ -10,8 +10,6 @@ export default function CustomerOrders() {
   async function getApi() {
     const salesByUserId = await getSalesByUserId(userId);
     setSales(salesByUserId);
-
-    console.log(salesByUserId);
   }
 
   useEffect(() => {
