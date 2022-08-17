@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Context from '../context/Context';
 import postCheckout from '../services/postCheckout';
 
 export default function CustomerForm(total) {
@@ -9,7 +10,8 @@ export default function CustomerForm(total) {
   const [deliveryAddress, setDeliveryAddress] = useState();
   const [deliveryNumber, setdeliveryNumber] = useState();
 
-  const { buyProducts } = useContext(Context);
+  const { buyProducts, setBuyProducts } = useContext(Context);
+  const { setSaleId } = useContext(Context);
 
   const history = useHistory();
 
@@ -26,7 +28,12 @@ export default function CustomerForm(total) {
     });
 
     if (post.message === 'Created') {
-      history.push('/customer/orders');
+      setDeliveryAddress('');
+      setSellerId('');
+      setdeliveryNumber('');
+      setBuyProducts([]);
+      setSaleId(post.addSale.id);
+      history.push(`/customer/orders/${post.addSale.id}`);
     }
   }
 
