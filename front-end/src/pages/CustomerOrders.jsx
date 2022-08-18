@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
 import getSalesByUserId from '../services/getSalesByUserId';
 
 export default function CustomerOrders() {
+  const history = useHistory();
   const [sales, setSales] = useState([]);
 
   async function getApi() {
@@ -21,9 +23,17 @@ export default function CustomerOrders() {
       <h1>Meus pedidos</h1>
 
       {sales.map(({ id, status, saleDate, totalPrice }) => {
-        console.log(saleDate, totalPrice);
+        const data = new Date(saleDate); // formata datas
+        // https://blog.betrybe.com/javascript/javascript-date-format/
+        const dataFormatada = `${data
+          .getDate()}/0${data.getMonth() + 1}/${data.getFullYear()}`;
+        console.log(saleDate, dataFormatada);
         return (
-          <div key={ id }>
+          <button
+            type="button"
+            key={ id }
+            onClick={ () => history.push(`/customer/orders/${id}`) }
+          >
             <div data-testid={ `customer_orders__element-order-id-${id}` }>
               {id}
             </div>
@@ -31,12 +41,12 @@ export default function CustomerOrders() {
               {status}
             </div>
             <div data-testid={ `customer_orders__element-order-date-${id}` }>
-              {saleDate}
+              {dataFormatada}
             </div>
             <div data-testid={ `customer_orders__element-card-price-${id}` }>
-              {totalPrice}
+              {totalPrice.replace('.', ',')}
             </div>
-          </div>
+          </button>
         );
       })}
 

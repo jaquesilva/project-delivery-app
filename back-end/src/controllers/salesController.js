@@ -2,8 +2,9 @@ const salesService = require('../services/salesService');
 
 const customerSalesOrders = async (req, res, next) => {
   try {
-    const { saleId } = req.params;
-    const salesById = await salesService.getBySaleId(saleId);
+    const { id } = req.params;
+    console.log(id);
+    const salesById = await salesService.getBySaleId(id);
 
     if (salesById.message) {
       res.status(409).json(salesById.message);
@@ -39,7 +40,7 @@ const customerCheckout = async (req, res, next) => {
       return res.status(401).json({ message: 'Sale already exists' });
     }
 
-    return res.status(201).json({ message: 'Created', addSale });
+    return res.status(201).json(addSale);
   } catch (erro) {
     next(erro);
   }

@@ -42,11 +42,20 @@ const customerCheckout = async (body) => {
       }),
     );
 
-  return addSale;
+  return addSale.id;
 };
 
 const getBySaleId = async (saleId) => {
-  const getSales = await SalesProducts.findAll({ where: { saleId } });
+  const getSales = await SalesProducts.findAll({ where: { saleId }, 
+    // include: [
+    //   {
+    //     model: products,
+    //     as: 'product',
+    //     attributes: ['name'],
+    //     as: 'productName',
+    //   },
+    // ],
+  });
 
   if (!getSales) {
     return { message: 'Nenhuma venda encontrada' };
