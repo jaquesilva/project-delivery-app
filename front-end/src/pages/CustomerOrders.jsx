@@ -21,7 +21,10 @@ export default function CustomerOrders() {
       <h1>Meus pedidos</h1>
 
       {sales.map(({ id, status, saleDate, totalPrice }) => {
-        console.log(saleDate, totalPrice);
+        const data = new Date(saleDate); // formata datas
+        const dataFormatada = `${data
+          .getDate()}/0${data.getMonth() + 1}/${data.getFullYear()}`;
+        console.log(saleDate, dataFormatada);
         return (
           <div key={ id }>
             <div data-testid={ `customer_orders__element-order-id-${id}` }>
@@ -31,10 +34,10 @@ export default function CustomerOrders() {
               {status}
             </div>
             <div data-testid={ `customer_orders__element-order-date-${id}` }>
-              {saleDate}
+              {dataFormatada}
             </div>
             <div data-testid={ `customer_orders__element-card-price-${id}` }>
-              {totalPrice}
+              {totalPrice.replace('.', ',')}
             </div>
           </div>
         );
