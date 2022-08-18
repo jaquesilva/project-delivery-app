@@ -27,6 +27,11 @@ export default function Login() {
   }
 
   useEffect(() => {
+    function validateRedirect() {
+      if (localStorage.getItem('user')) {
+        history.push('/customer/products');
+      }
+    }
     function validateInputs() {
       const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
       const MIN_PASSWORD = 6;
@@ -38,8 +43,9 @@ export default function Login() {
       }
       return setButton(true);
     }
+    validateRedirect();
     validateInputs();
-  }, [password, email]);
+  }, [password, email, history]);
 
   if (isloginSuced) {
     const { role } = reqUser;
@@ -52,9 +58,6 @@ export default function Login() {
     if (role === 'administrator') { return <Redirect to="/admin/manage" />; }
   }
 
-  if (JSON.parse(localStorage.getItem('user'))) {
-    return <Redirect to="/customer/products" />;
-  }
   return (
     <div>
       <h1>Deliver App</h1>
