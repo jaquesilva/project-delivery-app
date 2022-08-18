@@ -1,28 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
-import getSalesByUserId from '../services/getSalesByUserId';
+import getSalesById from '../services/getSalesById';
 
-export default function CustomerOrders() {
+export default function CustomerOrderDetails() {
+  const { id } = useParams();
   const history = useHistory();
   const [sales, setSales] = useState([]);
 
-  async function getApi() {
-    const user = await JSON.parse(localStorage.getItem('user'));
-    const salesByUserId = await getSalesByUserId({ userId: user.id });
-    setSales(salesByUserId);
-  }
-
   useEffect(() => {
+    async function getApi() {
+      const salesById = await getSalesById(id);
+      setSales(salesById);
+    }
     getApi();
-  }, []);
+  }, [id]);
 
   return (
     <div>
       <Navbar />
-      <h1>Meus pedidos</h1>
+      <h1>detalhes do pedido</h1>
 
-      {sales.map(({ id, status, saleDate, totalPrice }) => {
+      {sales.map(({ status, saleDate, totalPrice }) => {
         const data = new Date(saleDate); // formata datas
         // https://blog.betrybe.com/javascript/javascript-date-format/
         const dataFormatada = `${data
@@ -50,16 +49,7 @@ export default function CustomerOrders() {
         );
       })}
 
-      {sales.length === 0 && <div>Nenhuma venda por aqui!</div>}
+      {sales.length === 0 && <div>carregando Informaçoes!</div>}
     </div>
   );
 }
-
-// deliveryAddress: "Rua de entrega 01"
-// deliveryNumber: "111"
-// id: 1
-// saleDate: "2001-01-22T00:00:00.000Z"
-// sellerId: 1
-// status: "ENTREGUE"
-// totalPrice: 11
-// userId: 3

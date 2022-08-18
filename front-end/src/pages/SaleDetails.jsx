@@ -6,14 +6,13 @@ import getSalesById from '../services/getSalesById';
 export default function SaleDetails() {
   const { saleId } = useParams();
 
-  async function getApi() {
-    const salesById = await getSalesById(saleId);
-    console.log(salesById);
-  }
-
   useEffect(() => {
+    async function getApi() {
+      const salesById = await getSalesById(saleId);
+      console.log(salesById);
+    }
     getApi();
-  }, []);
+  }, [saleId]);
 
   return (
     <div>

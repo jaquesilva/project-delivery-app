@@ -45,8 +45,8 @@ const customerCheckout = async (body) => {
   return addSale.id;
 };
 
-const getBySaleId = async (saleId) => {
-  const getSales = await SalesProducts.findAll({ where: { saleId } });
+const getBySaleId = async (id) => {
+  const getSales = await sales.findAll({ where: { id } });
 
   if (!getSales) {
     return { message: 'Nenhuma venda encontrada' };
