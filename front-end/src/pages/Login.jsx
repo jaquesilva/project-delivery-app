@@ -51,6 +51,10 @@ export default function Login() {
     }
     if (role === 'administrator') { return <Redirect to="/admin/manage" />; }
   }
+
+  if (JSON.parse(localStorage.getItem('user'))) {
+    return <Redirect to="/customer/products" />;
+  }
   return (
     <div>
       <h1>Deliver App</h1>
