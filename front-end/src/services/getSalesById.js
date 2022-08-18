@@ -4,8 +4,8 @@ const api = axios.create({
   baseURL: 'http://localhost:3001/',
 });
 
-export default async (body) => {
-  const result = await api.post('/customer/orders', body);
+export default async (saleId) => {
+  const result = await api.get(`/customer/orders/${saleId}`);
 
   return result.data;
 };

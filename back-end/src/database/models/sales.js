@@ -7,13 +7,25 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        foreignKey: true,
+        onDelete: "CASCADE",
+        references: {
+          model: "users",
+          key: "id",
+        },
       },
       sellerId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        foreignKey: true,
+        onDelete: "CASCADE",
+        references: {
+          model: "users",
+          key: "id",
+        },
       },
       totalPrice: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
       },
       deliveryAddress: {
@@ -39,5 +51,20 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
+
+  Sales.associate = (models) => {
+    Sales.belongsTo(models.User, {
+      foreignKey: "userId",
+      otherKey: "id",
+      as: "customer",
+    });
+
+    Sales.belongsTo(models.User, {
+      foreignKey: "sellerId",
+      otherKey: "id",
+      as: "seller",
+    });
+  };
+
   return Sales;
 };

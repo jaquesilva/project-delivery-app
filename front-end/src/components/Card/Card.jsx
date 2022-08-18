@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext, useState } from 'react';
 import Context from '../../context/Context';
 import './card.css';
 
@@ -19,12 +19,10 @@ export default function Card(product) {
 
   function addToCart() {
     const item = buyProducts.find((item1) => item1.name === title);
-    console.log(title);
-    console.log(item);
     if (!item) {
-      console.log('aqui', item);
       return (
         setBuyProducts([...buyProducts, {
+          id: idProduct,
           name: title,
           unitPrice: parseFloat(price),
           quantity: quantity + 1,
@@ -34,18 +32,15 @@ export default function Card(product) {
     }
     item.quantity += 1;
     item.subTotal = parseFloat(item.unitPrice) * (quantity + 1);
-    console.log(buyProducts);
     return setBuyProducts([...buyProducts]);
   }
 
   function handleChange(e) {
-    console.log('console do target', e.target.value);
     const foco = e.target.value;
     if (foco) {
       setQuantity(foco);
 
       let item = buyProducts.find((item1) => item1.name === title);
-      console.log(item);
       if (!item) {
         item = {
           name: title,
@@ -58,7 +53,6 @@ export default function Card(product) {
         setBuyProducts(newItem);
         return;
       }
-      console.log('quantity', foco);
       if (quantity >= 0) {
         item.subTotal = parseFloat(item.unitPrice) * parseFloat(foco);
       }

@@ -3,15 +3,12 @@ import Navbar from '../components/navbar/Navbar';
 import getSalesByUserId from '../services/getSalesByUserId';
 
 export default function CustomerOrders() {
-  const userId = 3;
-
   const [sales, setSales] = useState([]);
 
   async function getApi() {
-    const salesByUserId = await getSalesByUserId(userId);
+    const user = await JSON.parse(localStorage.getItem('user'));
+    const salesByUserId = await getSalesByUserId({ userId: user.id });
     setSales(salesByUserId);
-
-    console.log(salesByUserId);
   }
 
   useEffect(() => {

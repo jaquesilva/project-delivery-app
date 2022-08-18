@@ -6,11 +6,9 @@ export default function Navbar() {
   const history = useHistory();
   function getLocalStorageName() {
     const storage = JSON.parse(localStorage.getItem('user'));
-    console.log(storage.name);
     return storage.name;
   }
   function handleClickLogout() {
-    console.log('click');
     localStorage.setItem('user', '');
     return history.push('/login');
   }
