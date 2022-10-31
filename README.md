@@ -14,17 +14,39 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 
 -->
+# Projeto App Delivery
 
-# Tecnologias utilizadas
+## Descrição do Projeto
+Em construção.
+
+## Contexto para criação da aplicação
+Em construção
+
+## Tecnologias utilizadas
+No Front-End:
+* HTML
+* CSS
+* JavaScript
 * React
-* Node.js
-* MySQL
-* JsonWebToken
-* Trello
-* Slack
-* Zoom
+* Context API
 
-# Colaboradores
+No Back-End:
+* JavaScript
+* Node.js
+* Express
+* Sequelize
+* MySQL
+
+Metodologias Ágeis:
+* Scrum
+* Kanban
+
+Comunicação:
+* Trello (Quadro com as tasks)
+* Slack (Assíncrona)
+* Zoom (Síncrona)
+
+## Colaboradores
 
 Desenvolvido em grupo por:
 * Fabiana Martins
@@ -33,13 +55,13 @@ Desenvolvido em grupo por:
 * Matheus Mena
 * Nicolas Dimitri
 
-# Status
+## Status
 Finalizado.
 
-# Desempenho
+## Desempenho
 80%
 
-# Requisitos
+## Requisitos
 
 ### 1 - Crie uma tela de login que deve ser acessível pelos endpoints / e /login no navegador
 ### 2 - Crie os elementos da tela de login com os data-testids disponíveis no protótipo
