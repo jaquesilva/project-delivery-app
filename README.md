@@ -22,6 +22,29 @@ Em construção.
 ## Contexto para criação da aplicação
 Em construção
 
+## Habilidades desenvolvidas
+
+Hard Skills:
+* A criação de components e pages usando React e Context API;
+* A estilização do front-end com CSS;
+* A modelagem do banco de dados com MySQL através do Sequelize;
+* A criação e associação de tabelas;
+* A construção de uma API REST;
+* A construção de um CRUD (Create, Read, Update, Delete), utilizando ORM Sequelize;
+* Uso de Metodologias Ágeis: Scrum e Kanban (quadro no Trello);
+
+Soft Skills:
+* Autoliderança; 
+* Colaboração;
+* Comunicação;
+  * Trello (Quadro com as tasks)
+  * Slack (Assíncrona)
+  * Zoom (Síncrona)
+* Gerenciamento do tempo;
+* Liderança;
+* Resolução de conflitos;
+* Resolução de problemas.
+
 ## Tecnologias utilizadas
 No Front-End:
 * HTML
@@ -36,15 +59,6 @@ No Back-End:
 * Express
 * Sequelize
 * MySQL
-
-Metodologias Ágeis:
-* Scrum
-* Kanban
-
-Comunicação:
-* Trello (Quadro com as tasks)
-* Slack (Assíncrona)
-* Zoom (Síncrona)
 
 ## Colaboradores
 
