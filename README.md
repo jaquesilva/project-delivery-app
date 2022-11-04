@@ -16,10 +16,19 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 -->
 # Projeto App Delivery
 
-## Descrição do Projeto
-Em construção.
+## Descrição do Projeto (FALTA TERMINAR)
+Criar e integrar tanto o back-end quanto o front-end, criando uma plataforma de delivery de cerveja para uma distribuidora de bebidas.
 
-## Contexto para criação da aplicação
+## Contexto para criação da aplicação (FALTA TERMINAR)
+A distribuidora de cervejas da dona Tereza está se informatizando! rocket Seu negócio, antes focado em um local específico da cidade, passou a receber uma quantidade massiva de encomendas de outros pontos, expandindo sua atuação via delivery. Isso tudo graças ao excelente preço das bebidas e atendimento da equipe de vendas.
+
+Agora a distribuidora possui alguns pontos de venda na cidade para agilizar no atendimento dessas áreas. Cada ponto de venda, por sua vez, possui uma pessoa vendedora responsável.
+
+Como seu antigo sistema, que era um conjunto de planilhas, já não atende a necessidade do negócio por gerar muita manutenção, dona Tereza procurou a sua equipe de pessoas desenvolvedoras com uma ideia de aplicativo que pudesse agilizar a vida de sua equipe e das pessoas que compram seus produtos.
+
+A ideia da sua equipe já pressupõe alguma escalabilidade, dado que foram estabelecidas algumas entidades genéricas no banco de dados e componentização no front-end, para que, caso o sistema cresça, não seja muito difícil mudar e ampliar essa estrutura.
+
+## Desenvolvimento
 Em construção
 
 ## Habilidades desenvolvidas
