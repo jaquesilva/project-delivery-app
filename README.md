@@ -113,7 +113,7 @@ Finalizado.
 
 ### Fluxo Comun
 
-#### 1 - Crie uma tela de login que deve ser acessível pelos endpoints / e /login no navegador
+###### 1 - Crie uma tela de login que deve ser acessível pelos endpoints / e /login no navegador
 #### 2 - Crie os elementos da tela de login com os data-testids disponíveis no protótipo
 #### 3 - Desenvolva a tela de login de maneira que ela impossibilite o login com dados mal formatados
 #### 4 - Desenvolva a tela de login de maneira que ela impossibilite o login com dados inexistentes no banco de dados
