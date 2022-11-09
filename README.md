@@ -36,6 +36,25 @@ A aplicação está dividida em 4 fluxos principais, uma validação de status e
 * Fluxo Comum que compreende:
   * (1) Tela de Login;
   * (2) Tela de Registro.
+  
+* Fluxo do Cliente que compreende:
+  * (3) Tela de Produtos;
+  * (4) Tela de Checkout;
+  * (5) Tela de Pedidos;
+  * (6) Tela de Detalhes do Pedido.
+  
+* Fluxo da Pessoa Vendedora que compreende:
+  * (7) Tela de Pedidos;
+  * (8) Tela de Detalhes/Controle do Pedido.
+  
+* Validação do Status do Pedido que compreende:
+  * (9) Teste de status.
+  
+* Fluxo da Pessoa Administradora que compreende:
+  * (10) Tela de gerenciamento de usuários.
+  
+* Testes da aplicação que compreende:
+  * (11) Testes de cobertura.
 
 ## Habilidades desenvolvidas
 
@@ -93,6 +112,7 @@ Finalizado.
 ## Requisitos
 
 ### Fluxo Comun
+
 #### 1 - Crie uma tela de login que deve ser acessível pelos endpoints / e /login no navegador
 #### 2 - Crie os elementos da tela de login com os data-testids disponíveis no protótipo
 #### 3 - Desenvolva a tela de login de maneira que ela impossibilite o login com dados mal formatados
@@ -103,6 +123,9 @@ Finalizado.
 #### 8 - Desenvolva a tela de registro de maneira que ela impossibilite o cadastro com dados mal formatados
 #### 9 - Desenvolva a tela de registro de maneira que ela possibilite cadastrar com dados válidos
 #### 10 - Desenvolva a tela de registro de maneira que ela impossibilite o cadastro de um usuário já existente
+
+### Fluxo do Cliente
+
 #### 11 - Crie uma tela de produtos do cliente contendo uma barra de navegação - navbar -, que servirá também para demais telas das pessoas usuárias
 #### 12 - Desenvolva a tela de produtos do cliente criando os demais elementos com os data-testids disponíveis no protótipo
 #### 13 - Desenvolva a tela de produtos do cliente de forma que ela pressuponha dados válidos da pessoa usuária armazenados no localStorage
@@ -119,18 +142,33 @@ Finalizado.
 #### 24 - Desenvolva a tela de pedidos do cliente de forma a dar acesso à tela de detalhes de um pedido ao clicar no card do mesmo
 #### 25 - Crie uma tela de detalhes do pedido do cliente com elementos a partir dos data-testids disponíveis no protótipo
 #### 26 - Desenvolva a tela de detalhes do pedido do cliente de forma a possuir os dados corretos da venda
+
+### Fluxo da Pessoa Vendedora
+
 #### 27 - Crie uma tela de pedidos da pessoa vendedora com elementos a partir dos data-testids disponíveis no protótipo
 #### 28 - Desenvolva a tela de pedidos da pessoa vendedora de forma a conter a lista de pedidos do mesmo com os dados corretos
 #### 29 - Desenvolva a tela de pedidos da pessoa vendedora de forma a dar acesso à tela de detalhes de um pedido ao clicar no card do mesmo
 #### 30 - Crie uma tela de detalhes do pedido da pessoa vendedora com elementos a partir dos data-testids disponíveis no protótipo
 #### 31 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a possuir os dados corretos da venda
+
+### Validação do Status do Pedido
+
 #### 32 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a ser capaz de alterar o status do pedido
 #### 33 - Garanta que o status do pedido atualizado na tela de detalhes do pedido da pessoa vendedora seja refletido na tela de detalhes do pedido do cliente após atualização das páginas
 #### 34 - Garanta que o status do pedido atualizado na tela de detalhes do pedido da pessoa vendedora seja refletido na tela de lista de pedidos do cliente após atualização das páginas
 #### 35 - Garanta que o status do pedido atualizado na tela de detalhes do pedido do cliente seja refletido na tela de lista de pedidos da pessoa vendedora após atualização das páginas
+
+### Fluxo da Pessoa Administradora
+
 #### 36 - Crie uma tela de pessoa administradora com elementos a partir dos data-testids disponíveis no protótipo
 #### 37 - Desenvolva a tela da pessoa administradora de forma a validar o formulário de cadastro
 #### 38 - Desenvolva a tela da pessoa administradora de forma que seja possível cadastrar pessoas usuárias válidas
 #### 39 - Desenvolva a tela da pessoa administradora de forma que ela impossibilite o cadastro de pessoas usuárias já existentes
 #### 40 - (Bônus) Desenvolva a tela da pessoa administradora de forma que haja uma tabela de pessoas usuárias cadastradas
 #### 41 - (Bônus) Desenvolva a tela da pessoa administradora de forma que seja possível deletar pessoas usuárias na tabela
+
+### Cobertura de Testes
+
+#### 42 - Crie testes que cubram no mínimo 30 por cento dos arquivos do front-end e back-end em src com um mínimo de 75 linhas cobertas em cada
+#### 43 - (Bônus) Crie testes que cubram no mínimo 60 por cento dos arquivos do front-end e back-end em src com um mínimo de 150 linhas cobertas em cada
+#### 44 - (Bônus) Crie testes que cubram no mínimo 90 por cento dos arquivos do front-end e back-end em src com um mínimo de 225 linhas cobertas em cada
