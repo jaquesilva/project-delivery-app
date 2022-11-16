@@ -1,5 +1,3 @@
-# 🚧 README em construção 🚧
-
 <!-- Olá, Tryber!
 
 Esse é apenas um arquivo inicial para o README do seu projeto.
@@ -14,6 +12,7 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 
 -->
+
 # Projeto App Delivery
 
 ## Descrição do Projeto
@@ -30,7 +29,7 @@ Como seu antigo sistema, que era um conjunto de planilhas, já não atende a nec
 
 A ideia da sua equipe já pressupõe alguma escalabilidade, dado que foram estabelecidas algumas entidades genéricas no banco de dados e componentização no front-end, para que, caso o sistema cresça, não seja muito difícil mudar e ampliar essa estrutura.
 
-## Desenvolvimento (EM CONSTRUÇÃO)
+## Desenvolvimento
 
 A aplicação está dividida em 4 fluxos principais, uma validação de status entre cliente e pessoa vendedora e cobertura de testes.
 
@@ -64,6 +63,13 @@ A aplicação está dividida em 4 fluxos principais, uma validação de status e
   * (3) A pessoa administradora, que gerencia quem usa o aplicativo;
 * Fazer a comunicação entre clientes e pessoas vendedoras: a pessoa cliente faz o pedido via "carrinho de compras" e a pessoa vendedora aprova, prepara e envia esse pedido. Quando o produto é recebido por quem comprou, essa pessoa marca o pedido como "recebido". Ambos devem possuir detalhes sobre seus pedidos;
 * Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora em seu dash de pedidos após a atualização da página. A pessoa cliente, por sua vez, deve ter as informações sobre seu pedido quando sua página for atualizada, ou seja, ter informações se o pedido está sendo preparado ou se já saiu pra entrega;
+
+### Sendo necessário:
+* Integrar Front-End e Back-End;
+* Construir o banco de dados MySQL, utilizando o ORM Sequelize, bem como associar as tabelas quando necessário;
+* Construir as páginas e componentes no Front-End;
+* Gerar o token para autenticação dos usuários;
+* O Back-End deverá implementar as regras de negócio para popular adequadamente a tebela disponível no Front-End que será exibida para a pessoa usuária do sistema.
   
 ## Habilidades desenvolvidas
 
